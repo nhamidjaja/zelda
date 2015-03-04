@@ -1,6 +1,13 @@
 <h1>Links#new</h1>
 <p>Find me in app/views/links/new.html.erb</p>
 
+<% Link.all.each do |l| %>
+  <%= l.vanity_url %> =>
+  <%= l.destination_url %>
+  <br>
+<% end %>
+<br>
+
 <%= form_for @link, url: links_path do |f| %>
   <%= f.label :vanity_url %>
   <%= f.text_field :vanity_url %>
