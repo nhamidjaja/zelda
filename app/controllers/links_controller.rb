@@ -24,6 +24,10 @@ class LinksController < ApplicationController
     end
   end
 
+  def stats
+    @link = Link.find_by_vanity_url(params[:short_url])
+  end
+
   private
 
   def link_params

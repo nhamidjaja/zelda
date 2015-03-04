@@ -61,4 +61,17 @@ RSpec.describe LinksController, type: :controller do
       it { is_expected.to redirect_to(root_path)}
     end    
   end
+
+  describe 'GET #stats' do
+    before do
+      FactoryGirl.create(:link, vanity_url: 'a', destination_url: 'google.com')
+      get :stats, short_url: 'a'
+    end
+
+    subject { response }
+
+    it { is_expected.to have_http_status(:success) }
+    it { is_expected.to render_template(:stats) }
+    it { expect(assigns(:link)).to_not be_nil }
+  end
 end
