@@ -52,13 +52,9 @@ RSpec.describe LinksController, type: :controller do
     end
 
     context 'invalid' do
-      before do
+      it { expect {
         get :redirect, short_url: 'a'
-      end
-
-      subject { response }
-
-      it { is_expected.to redirect_to(root_path)}
+      }.to raise_error(ActionController::RoutingError) }
     end    
   end
 

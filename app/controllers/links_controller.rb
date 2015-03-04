@@ -14,14 +14,10 @@ class LinksController < ApplicationController
   end
 
   def redirect
-    link = Link.find_by_vanity_url(params[:short_url])
+    link = Link.find_by_vanity_url(params[:short_url]) || not_found
 
-    if link
-      link.visitors.create(ip: request.remote_ip, user_agent: request.user_agent)
-      redirect_to "http://#{link.destination_url}"
-    else
-      redirect_to root_path
-    end
+    link.visitors.create(ip: request.remote_ip, user_agent: request.user_agent)
+    redirect_to "http://#{link.destination_url}"
   end
 
   def stats
