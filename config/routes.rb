@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/links' => 'links#create', as: 'links'
  
   get '/:short_url' => 'links#redirect'
+  get '/:short_url/stats' => 'links#stats'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
