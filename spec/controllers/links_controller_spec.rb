@@ -34,4 +34,17 @@ RSpec.describe LinksController, type: :controller do
       it { expect(assigns(:link)).to_not be_nil }
     end
   end
+
+  describe 'GET #redirect' do
+    context 'valid' do
+      before do
+        FactoryGirl.create(:link, vanity_url: 'a', destination_url: 'google.com')
+        get :redirect, short_url: 'a'
+      end
+
+      subject { response }
+
+      it { is_expected.to redirect_to('http://google.com')}
+    end
+  end
 end

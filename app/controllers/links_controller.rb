@@ -5,12 +5,17 @@ class LinksController < ApplicationController
 
   def create
     @link = Link.new(link_params)
-    
+
     if @link.save
       redirect_to root_path
     else
       render :new
     end
+  end
+
+  def redirect
+    link = Link.find_by_vanity_url(params[:short_url])
+    redirect_to "http://#{link.destination_url}"
   end
 
   private
