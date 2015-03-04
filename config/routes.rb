@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root 'links#new'
 
-  post '/' => 'links#create'
-
+  post '/links' => 'links#create', as: 'links'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

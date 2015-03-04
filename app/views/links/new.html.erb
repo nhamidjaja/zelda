@@ -1,2 +1,12 @@
 <h1>Links#new</h1>
 <p>Find me in app/views/links/new.html.erb</p>
+
+<%= form_for @link, url: links_path do |f| %>
+  <%= f.label :vanity_url %>
+  <%= f.text_field :vanity_url %>
+  <br>
+  <%= f.label :destination_url %>
+  <%= f.text_field :destination_url %>
+  <br>
+  <%= f.submit %>
+<% end %>
