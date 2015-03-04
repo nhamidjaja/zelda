@@ -15,7 +15,12 @@ class LinksController < ApplicationController
 
   def redirect
     link = Link.find_by_vanity_url(params[:short_url])
-    redirect_to "http://#{link.destination_url}"
+    
+    if link
+      redirect_to "http://#{link.destination_url}"
+    else
+      redirect_to root_path
+    end
   end
 
   private

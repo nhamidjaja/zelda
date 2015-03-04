@@ -46,5 +46,15 @@ RSpec.describe LinksController, type: :controller do
 
       it { is_expected.to redirect_to('http://google.com')}
     end
+
+    context 'invalid' do
+      before do
+        get :redirect, short_url: 'a'
+      end
+
+      subject { response }
+
+      it { is_expected.to redirect_to(root_path)}
+    end    
   end
 end
