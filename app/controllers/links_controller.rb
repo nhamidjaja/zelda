@@ -15,8 +15,9 @@ class LinksController < ApplicationController
 
   def redirect
     link = Link.find_by_vanity_url(params[:short_url])
-    
+
     if link
+      link.visitors.create(ip: request.remote_ip, user_agent: request.user_agent)
       redirect_to "http://#{link.destination_url}"
     else
       redirect_to root_path

@@ -45,6 +45,10 @@ RSpec.describe LinksController, type: :controller do
       subject { response }
 
       it { is_expected.to redirect_to('http://google.com')}
+
+      it 'creates new Visitor' do
+        expect{ get :redirect, short_url: 'a' }.to change(Visitor, :count).by(1)
+      end
     end
 
     context 'invalid' do
